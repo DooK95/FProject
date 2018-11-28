@@ -15,14 +15,18 @@
                     <td>
                         <a href="http://localhost:8080/coach/add">Add coach</a>
                     </td>
-                    <td>AddGroup</td>
+                    <td>
+                        <a href="http://localhost:8080/groups/add">Add group</a>
+                    </td>
                     <td>AddPlayer</td>
                 </tr>
                 <tr>
                     <td>
                         <a href="http://localhost:8080/coach/show">All coaches</a>
                     </td>
-                    <td>Show Group</td>
+                    <td>
+                        <a href="http://localhost:8080/groups/show">All groups</a>
+                    </td>
                     <td>Show Players</td>
                 </tr>
             </table>

@@ -30,7 +30,11 @@ public class Coach {
     private CoachPermision permission;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Group> groups = new ArrayList<>();
+    @JoinTable(name = "COACH_GROUPS",
+            joinColumns = @JoinColumn(name = "coaches_id"),
+            inverseJoinColumns = @JoinColumn(name = "groups_id")
+    )
+    private List<Group> groups;
 
     public Long getId() {
         return id;

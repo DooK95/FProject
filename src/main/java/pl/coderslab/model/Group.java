@@ -21,7 +21,7 @@ public class Group {
     @Enumerated(EnumType.STRING)
     private GroupStatus status;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "groups")
     private List<Coach> coaches;
 
     @OneToMany
@@ -74,6 +74,7 @@ public class Group {
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
+
 
     @Override
     public String toString() {

@@ -5,9 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.model.Coach;
 import pl.coderslab.model.Group;
 import pl.coderslab.model.GroupStatus;
+import pl.coderslab.model.TrainingDay;
+import pl.coderslab.service.CoachService;
 import pl.coderslab.service.GroupService;
+import pl.coderslab.service.TrainingsService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,19 +24,25 @@ public class GroupController {
     @Autowired
     GroupService groupService;
 
-    @ModelAttribute("groups")
-    public List<Group> groups() {
-        return groupService.findAll();
+    @Autowired
+    TrainingsService trainingsService;
+
+    @Autowired
+    CoachService coachService;
+
+    @ModelAttribute("trainings")
+    public List<TrainingDay> trainingDays() {
+        return trainingsService.findAll();
     }
 
-    @ModelAttribute("status")
-    public GroupStatus[] statuses() {
-        return GroupStatus.values();
+    @ModelAttribute("coaches")
+    public List<Coach> coaches() {
+        return coachService.findAll();
     }
 
     @GetMapping("/add")
     public String add(Model model) {
-        model.addAttribute("coach", new Group());
+        model.addAttribute("group", new Group());
         return "groupForm";
     }
 
