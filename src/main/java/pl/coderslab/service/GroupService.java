@@ -11,4 +11,6 @@ public interface GroupService {
     public void del (long id);
     public List<Group> findAll();
     public Group findById(Long id);
+
+    List<Group> findByIdToArray(long id);
 }

@@ -57,8 +57,12 @@ public class CoachController {
         return "coachForm";
     }
 
+    @Valid
     @PostMapping("/update/{id}")
-    public String update(@ModelAttribute Coach coach) {
+    public String update(@ModelAttribute @Valid Coach coach, BindingResult result) {
+        if (result.hasErrors()) {
+            return "coachForm";
+        }
         coachService.save(coach);
         return "redirect:../show";
     }
@@ -66,7 +70,7 @@ public class CoachController {
 
     @GetMapping("/show/{id}")
     public String show(@PathVariable int id, Model model) {
-        model.addAttribute("coaches", coachService.findById(id));
+        model.addAttribute("coaches", coachService.findByIdToArray(id));
         return "coachList";
     }
 

@@ -10,6 +10,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
+    <jsp:include page="coachHeader.jsp"/>
     <title>Add Coach</title>
 
 </head>
@@ -17,30 +18,29 @@
 
 <%--@elvariable id="coach" type="java"--%>
 <form:form method="post" modelAttribute="coach">
-    <div class="container">
-        <h3>Add coach:</h3>
+    <div class="container" style="max-width: 80%">
         <div class="card">
             <div class="card-body">
+                <h3>Add coach:</h3>
                 <div class="form-group">
                     <label for="firstName">Name:</label><br>
-                    <form:input id="firstName" path="firstName" type="text" class="form-control"/><br>
-                    <form:errors cssClass="error" path="firstName"></form:errors><br>
+                    <form:input id="firstName" path="firstName" type="text" class="form-control"/>
+                    <form:errors cssClass="error" path="firstName"></form:errors>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Surname:</label><br>
-                    <form:input id="lastName" path="lastName" type="text" class="form-control"/><br>
-                    <form:errors cssClass="error" path="lastName"></form:errors><br>
+                    <form:input id="lastName" path="lastName" type="text" class="form-control"/>
+                    <form:errors cssClass="error" path="lastName"></form:errors>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label><br>
-                    <form:input id="email" path="email" type="email" class="form-control"/><br>
-                    <form:errors cssClass="error" path="email"></form:errors><br>
+                    <form:input id="email" path="email" type="email" class="form-control"/>
+                    <form:errors cssClass="error" path="email"></form:errors>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone:</label><br>
-                    <form:input id="phone" path="phoneNumber" type="text" class="form-control"/><br>
-                    <form:errors cssClass="error" path="phoneNumber"></form:errors><br>
-                </div>
+                    <form:input id="phone" path="phoneNumber" type="text" class="form-control"/>
+                    <form:errors cssClass="error" path="phoneNumber"></form:errors>
                 <div class="form-group">
                     <label for="permission">Permission:</label><br>
                     <form:select class="form-control" path="permission">

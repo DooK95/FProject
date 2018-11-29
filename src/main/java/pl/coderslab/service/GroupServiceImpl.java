@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.model.Group;
 import pl.coderslab.repositories.GroupRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,5 +42,12 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Group findById(Long id) {
         return groupRepository.findGroupById(id);
+    }
+
+    @Override
+    public List<Group> findByIdToArray(long id) {
+        List<Group> list = new ArrayList<>();
+        list.add(groupRepository.findGroupById(id));
+        return list;
     }
 }

@@ -22,6 +22,9 @@ public class Player {
     @NotBlank
     private String secondName;
 
+    @Transient
+    private String fullName;
+
     @NotBlank
     private String phoneNumber;
 
@@ -41,6 +44,9 @@ public class Player {
     @NotBlank
     private String city;
 
+    @Transient
+    private String fullAddress;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 3)
     private WeekTrainings numberOfTrainings;
@@ -53,6 +59,10 @@ public class Player {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -141,5 +151,13 @@ public class Player {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public String getFullName() {
+        return firstName +" "+ secondName;
+    }
+
+    public String getFullAddress() {
+        return address + " " + city;
     }
 }

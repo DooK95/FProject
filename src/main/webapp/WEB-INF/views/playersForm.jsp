@@ -10,6 +10,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
+    <jsp:include page="playersHeader.jsp"/>
     <title>Add Player</title>
 
 </head>
@@ -17,30 +18,34 @@
 
 <%--@elvariable id="player" type="java"--%>
 <form:form method="post" modelAttribute="player">
-    <div class="container">
-        <h3>Add Player:</h3>
+    <div class="container" style="max-width: 80%">
         <div class="card">
             <div class="card-body">
+                <h3>Add Player:</h3>
                 <div class="form-group">
                     <label for="firstName">Name:</label><br>
                     <form:input id="firstName" path="firstName" type="text" class="form-control"/>
                     <form:errors cssClass="error" path="firstName"></form:errors>
                 </div>
+
                 <div class="form-group">
                     <label for="lastName">Surname:</label><br>
                     <form:input id="lastName" path="secondName" type="text" class="form-control"/>
                     <form:errors cssClass="error" path="secondName"></form:errors>
                 </div>
+
                 <div class="form-group">
                     <label for="email">Email:</label><br>
                     <form:input id="email" path="email" type="email" class="form-control"/>
                     <form:errors cssClass="error" path="email"></form:errors>
                 </div>
+
                 <div class="form-group">
                     <label for="phone">Phone:</label><br>
                     <form:input id="phone" path="phoneNumber" type="text" class="form-control"/>
                     <form:errors cssClass="error" path="phoneNumber"></form:errors>
                 </div>
+
                 <div class="form-group">
                     <label for="year">Year of Birth:</label><br>
                     <form:input id="year" path="birthYear" type="text" class="form-control"/>
@@ -52,11 +57,13 @@
                     <form:input id="street" path="address" type="text" class="form-control"/>
                     <form:errors cssClass="error" path="address"></form:errors>
                 </div>
+
                 <div class="form-group">
                     <label for="code">Code:</label><br>
                     <form:input id="code" path="code_address" type="text" class="form-control"/>
                     <form:errors cssClass="error" path="code_address"></form:errors>
                 </div>
+
                 <div class="form-group">
                     <label for="cityId">City:</label><br>
                     <form:input id="cityId" path="city" type="text" class="form-control"/>
@@ -86,8 +93,7 @@
                     <form:errors cssClass="error" path="group"></form:errors>
                 </div>
 
-
-                <br><input type="submit" value="Save">
+                <input type="submit" value="Save">
 
             </div>
         </div>

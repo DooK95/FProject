@@ -10,5 +10,8 @@ public interface CoachService {
     public Coach findById (long id);
     public Coach findByName(String name);
     public void del (long id);
+
+    List<Coach> findByIdToArray(long id);
+
     public List<Coach> findAll();
 }

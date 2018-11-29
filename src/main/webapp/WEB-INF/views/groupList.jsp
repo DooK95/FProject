@@ -10,6 +10,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
+    <jsp:include page="groupHeader.jsp"/>
     <title>Group List</title>
     <script>
         function confirmDelete(id, address) {
@@ -21,9 +22,10 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" style="max-width: 80%">
     <div class="card">
         <div class="card-body">
+            <h3>Groups list:</h3>
             <table class="table table-hover">
                 <tr>
                     <td> Street</td>

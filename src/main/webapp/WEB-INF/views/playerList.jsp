@@ -10,6 +10,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
+    <jsp:include page="playersHeader.jsp"/>
     <title>Players List</title>
     <script>
         function confirmDelete(id, firstName) {
@@ -21,19 +22,17 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" style="max-width: 80%">
     <div class="card">
         <div class="card-body">
+            <h3>Players list:</h3>
             <table class="table table-hover">
                 <tr>
                     <td> Name</td>
-                    <td> Surname</td>
                     <td> Phone</td>
                     <td> Email</td>
                     <td> Year</td>
                     <td> Street</td>
-                    <td> Code</td>
-                    <td> City</td>
                     <td> Trainings in week</td>
                     <td> Status</td>
                     <td> Group</td>
@@ -41,17 +40,14 @@
                 </tr>
                 <c:forEach var="player" items="${players}">
                     <tr>
-                        <td>${player.firstName}</td>
-                        <td>${player.secondName}</td>
+                        <td>${player.fullName}</td>
                         <td>${player.phoneNumber}</td>
                         <td>${player.email}</td>
                         <td>${player.birthYear}</td>
-                        <td>${player.address}</td>
-                        <td>${player.code_address}</td>
-                        <td>${player.city}</td>
+                        <td>${player.fullAddress}</td>
                         <td>${player.numberOfTrainings}</td>
                         <td>${player.status}</td>
-                        <td>${player.group}</td>
+                        <td>${player.group.address}</td>
 
                         <td>
                             <a href="/players/update/${player.id}" class="btn badge-success">Edit</a>

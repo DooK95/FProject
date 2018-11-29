@@ -48,13 +48,17 @@ public class PlayerController {
 
     @GetMapping("/update/{id}")
     public String getUpD(@PathVariable long id, Model model) {
-        Player group = playerService.findById(id);
-        model.addAttribute(group);
-        return "playerForm";
+        Player player = playerService.findById(id);
+        model.addAttribute(player);
+        return "playersForm";
     }
 
+    @Valid
     @PostMapping("/update/{id}")
-    public String update(@ModelAttribute Player player) {
+    public String update(@ModelAttribute @Valid Player player,@PathVariable long id, BindingResult result) {
+        if (result.hasErrors()) {
+            return "playersForm";
+        }
         playerService.save(player);
         return "redirect:../show";
     }
@@ -62,7 +66,7 @@ public class PlayerController {
 
     @GetMapping("/show/{id}")
     public String show(@PathVariable long id, Model model) {
-        model.addAttribute("players", playerService.findById(id));
+        model.addAttribute("players", playerService.findByIdToArray(id));
         return "playerList";
     }
 

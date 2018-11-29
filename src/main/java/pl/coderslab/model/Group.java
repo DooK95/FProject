@@ -3,6 +3,8 @@ package pl.coderslab.model;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.coderslab.service.PlayerService;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "GROUPS")
 public class Group {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,13 +34,8 @@ public class Group {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Coach> coaches;
 
-    @OneToMany
+    @OneToMany(mappedBy = "group")
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(name = "GROUPS_PLAYERS",
-            joinColumns = @JoinColumn(name = "Group_id"),
-            inverseJoinColumns = @JoinColumn(name = "players_id")
-    )
-
     private List<Player> players;
 
     @Transient
@@ -98,8 +96,17 @@ public class Group {
         return address + ", " + trainingDay + ", " + status;
     }
 
+//    public String getGroupSize() {
+//        return String.valueOf(players.size());
+//    }
     public String getGroupSize() {
-        return String.valueOf(players.size());
+        int quantity = 0;
+        for (Player p : players) {
+            if(p.getStatus() == PlayerStatus.ACTIVE){
+                quantity++;
+            }
+        }
+        return String.valueOf(quantity);
     }
 
     @Override

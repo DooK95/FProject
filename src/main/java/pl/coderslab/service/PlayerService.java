@@ -12,7 +12,11 @@ public interface PlayerService {
 
     public Player findById(long id);
 
+    public List<Player> findByIdToArray(long id);
+
     public void del(long id);
 
     public List<Player> findAll();
+
+    List<Player> findAllActive();
 }

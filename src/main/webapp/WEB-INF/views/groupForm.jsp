@@ -10,6 +10,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
+    <jsp:include page="groupHeader.jsp"/>
     <title>Add Group</title>
 
 </head>
@@ -17,15 +18,15 @@
 
 <%--@elvariable id="group" type="java"--%>
 <form:form method="post" modelAttribute="group">
-    <div class="container">
-        <h3>Add group:</h3>
+    <div class="container" style="max-width: 80%">
         <div class="card">
             <div class="card-body">
-
+                <h3>Add group:</h3>
                 <div class="form-group">
                     <label for="trainingId">Training Time:</label><br>
-                    <form:select class="form-control" id="trainingId" itemValue="id" itemLabel="allInfo" path="trainingDay"
-                                 items="${trainings}" /><br>
+                    <form:select class="form-control" id="trainingId" itemValue="id" itemLabel="allInfo"
+                                 path="trainingDay"
+                                 items="${trainings}"/><br>
                     <a href="http://localhost:8080/trainings/add">Add training time</a>
                     <form:errors cssClass="error" path="trainingDay"></form:errors>
                 </div>
@@ -45,8 +46,9 @@
                 </div>
 
                 <input type="submit" value="Save">
-
-
+            </div>
+        </div>
+    </div>
 </form:form>
 </body>
 </html>

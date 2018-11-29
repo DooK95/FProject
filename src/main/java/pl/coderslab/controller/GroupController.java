@@ -65,8 +65,12 @@ public class GroupController {
         return "groupForm";
     }
 
+    @Valid
     @PostMapping("/update/{id}")
-    public String update(@ModelAttribute Group group) {
+    public String update(@ModelAttribute @Valid Group group, BindingResult result) {
+        if (result.hasErrors()) {
+            return "groupForm";
+        }
         groupService.save(group);
         return "redirect:../show";
     }
@@ -74,7 +78,7 @@ public class GroupController {
 
     @GetMapping("/show/{id}")
     public String show(@PathVariable long id, Model model) {
-        model.addAttribute("groups", groupService.findById(id));
+        model.addAttribute("groups", groupService.findByIdToArray(id));
         return "groupList";
     }
 
