@@ -17,8 +17,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import pl.coderslab.converter.StringTabToGroupConverter;
-import pl.coderslab.converter.StringToGroupsConverter;
+import pl.coderslab.converter.*;
 
 import javax.persistence.EntityManagerFactory;
 import javax.validation.Validator;
@@ -67,19 +66,37 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public StringTabToGroupConverter convert() {
+    public StringTabToGroupConverter convertSTTG() {
         return new StringTabToGroupConverter();
     }
 
     @Bean
-    public StringToGroupsConverter convertSG() {
+    public StringToGroupsConverter convertSTGs() {
         return new StringToGroupsConverter();
+    }
+
+    @Bean
+    public StringTabToTrainingDayConverter convertSTTTD() {
+        return new StringTabToTrainingDayConverter();
+    }
+
+    @Bean
+    public StringToTrainingDayConverter convertSTTD() {
+        return new StringToTrainingDayConverter();
+    }
+
+    @Bean
+    public StringToGroupConverter convertSTG() {
+        return new StringToGroupConverter();
     }
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(convert());
-        registry.addConverter(convertSG());
+        registry.addConverter(convertSTTG());
+        registry.addConverter(convertSTG());
+        registry.addConverter(convertSTGs());
+        registry.addConverter(convertSTTTD());
+        registry.addConverter(convertSTTD());
     }
 
     @Override

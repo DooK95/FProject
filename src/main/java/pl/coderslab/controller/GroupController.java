@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.model.Coach;
-import pl.coderslab.model.Group;
-import pl.coderslab.model.GroupStatus;
-import pl.coderslab.model.TrainingDay;
+import pl.coderslab.model.*;
 import pl.coderslab.service.CoachService;
 import pl.coderslab.service.GroupService;
 import pl.coderslab.service.TrainingsService;
@@ -40,6 +37,11 @@ public class GroupController {
         return coachService.findAll();
     }
 
+    @ModelAttribute("status")
+    public GroupStatus[] statuses() {
+        return GroupStatus.values();
+    }
+
     @GetMapping("/add")
     public String add(Model model) {
         model.addAttribute("group", new Group());
@@ -60,7 +62,7 @@ public class GroupController {
     public String getUpD(@PathVariable long id, Model model) {
         Group group = groupService.findById(id);
         model.addAttribute(group);
-        return "coachForm";
+        return "groupForm";
     }
 
     @PostMapping("/update/{id}")
@@ -73,12 +75,18 @@ public class GroupController {
     @GetMapping("/show/{id}")
     public String show(@PathVariable long id, Model model) {
         model.addAttribute("groups", groupService.findById(id));
-        return "coachList";
+        return "groupList";
     }
 
     @GetMapping("/show")
     public String show(Model model) {
         model.addAttribute("groups", groupService.findAll());
-        return "coachList";
+        return "groupList";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String del(@PathVariable long id) {
+        groupService.del(id);
+        return "redirect:../show";
     }
 }

@@ -10,7 +10,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
-    <title>Title</title>
+    <title>Add Coach</title>
 
 </head>
 <body>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group">
                     <label for="groupsId">Groups:</label><br>
-                    <form:select class="form-control" id="groupsId" itemValue="id" itemLabel="address" path="groups"
+                    <form:select class="form-control" id="groupsId" itemValue="id" itemLabel="allInfo" path="groups"
                                  items="${groups}"/><br>
                     <form:errors cssClass="error" path="groups"></form:errors>
                 </div>

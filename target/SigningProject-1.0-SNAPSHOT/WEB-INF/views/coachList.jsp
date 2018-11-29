@@ -10,7 +10,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
-    <title>Title</title>
+    <title>Coach List</title>
     <script>
         function confirmDelete(id, firstName) {
             if (confirm("Usunąć: " + firstName)) {
@@ -32,7 +32,7 @@
                     <td> Phone</td>
                     <td> Permission</td>
                     <td> Groups</td>
-                    <td> action</td>
+                    <td> Action</td>
                 </tr>
                 <c:forEach var="coach" items="${coaches}">
                     <tr>
@@ -43,7 +43,7 @@
                         <td>${coach.permission}</td>
                         <td>
                             <c:forEach var="group" items="${coach.groups}">
-                                <span>${group}</span><br>
+                                <span>${group.address}</span><br>
                             </c:forEach>
                         </td>
                         <td>

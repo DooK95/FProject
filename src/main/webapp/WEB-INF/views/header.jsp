@@ -18,7 +18,7 @@
                     <td>
                         <a href="http://localhost:8080/groups/add">Add group</a>
                     </td>
-                    <td>AddPlayer</td>
+                    <td><a href="http://localhost:8080/players/add">AddPlayer</a></td>
                 </tr>
                 <tr>
                     <td>
@@ -27,7 +27,7 @@
                     <td>
                         <a href="http://localhost:8080/groups/show">All groups</a>
                     </td>
-                    <td>Show Players</td>
+                    <td><a href="http://localhost:8080/players/show">Show Players</a></td>
                 </tr>
             </table>
         </div>

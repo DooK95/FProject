@@ -36,6 +36,9 @@ public class Coach {
     )
     private List<Group> groups;
 
+    @Transient
+    String fullName;
+
     public Long getId() {
         return id;
     }
@@ -90,6 +93,10 @@ public class Coach {
 
     public void setPermission(CoachPermision permission) {
         this.permission = permission;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
     @Override

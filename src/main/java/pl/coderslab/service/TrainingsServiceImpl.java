@@ -37,4 +37,5 @@ public class TrainingsServiceImpl implements TrainingsService {
     public List<TrainingDay> findAll() {
         return trainingRepository.findAll();
     }
+
 }

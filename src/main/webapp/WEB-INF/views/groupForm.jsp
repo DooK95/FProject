@@ -10,7 +10,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp"/>
-    <title>Title</title>
+    <title>Add Group</title>
 
 </head>
 <body>
@@ -18,9 +18,17 @@
 <%--@elvariable id="group" type="java"--%>
 <form:form method="post" modelAttribute="group">
     <div class="container">
-        <h3>Add coach:</h3>
+        <h3>Add group:</h3>
         <div class="card">
             <div class="card-body">
+
+                <div class="form-group">
+                    <label for="trainingId">Training Time:</label><br>
+                    <form:select class="form-control" id="trainingId" itemValue="id" itemLabel="allInfo" path="trainingDay"
+                                 items="${trainings}" /><br>
+                    <a href="http://localhost:8080/trainings/add">Add training time</a>
+                    <form:errors cssClass="error" path="trainingDay"></form:errors>
+                </div>
 
                 <div class="form-group">
                     <label for="address">Street:</label><br>
@@ -29,55 +37,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="trainingId">Training Time:</label><br>
-                    <form:select class="form-control" id="trainingId" itemValue="id" itemLabel="allInfo" path="trainingDay"
-                                 items="${trainings}"/><br>
-                    <a href="#">Add training time</a>
-                    <form:errors cssClass="error" path="trainingDay"></form:errors>
+                    <label for="statusId">Status:</label><br>
+                    <form:select id="statusId" class="form-control" path="status">
+                        <form:options/>
+                    </form:select>
+                    <form:errors cssClass="error" path="status"></form:errors>
                 </div>
-
-
-
-                <%---------------------------------------------------------------------------------%>
-
-                <%--<div class="form-group">--%>
-                    <%--<label for="lastName">Surname:</label><br>--%>
-                    <%--<form:input id="lastName" path="lastName" type="text" class="form-control"/><br>--%>
-                    <%--<form:errors cssClass="error" path="lastName"></form:errors><br>--%>
-                <%--</div>--%>
-
-                <%--<div class="form-group">--%>
-                    <%--<label for="email">Email:</label><br>--%>
-                    <%--<form:input id="email" path="email" type="email" class="form-control"/><br>--%>
-                    <%--<form:errors cssClass="error" path="email"></form:errors><br>--%>
-                <%--</div>--%>
-
-                <%--<div class="form-group">--%>
-                    <%--<label for="phone">Phone:</label><br>--%>
-                    <%--<form:input id="phone" path="phoneNumber" type="text" class="form-control"/><br>--%>
-                    <%--<form:errors cssClass="error" path="phoneNumber"></form:errors><br>--%>
-                <%--</div>--%>
-
-                <%--<div class="form-group">--%>
-                    <%--<label for="permission">Permission:</label><br>--%>
-                    <%--<form:select class="form-control" path="permission">--%>
-                        <%--<form:options/>--%>
-                    <%--</form:select>--%>
-                    <%--<form:errors cssClass="error" path="permission"></form:errors>--%>
-                <%--</div>--%>
-
-                <%--<div class="form-group">--%>
-                    <%--<label for="groupsId">Groups:</label><br>--%>
-                    <%--<form:select class="form-control" id="groupsId" itemValue="id" itemLabel="address" path="groups"--%>
-                                 <%--items="${groups}"/><br>--%>
-                    <%--<form:errors cssClass="error" path="groups"></form:errors>--%>
-                <%--</div>--%>
 
                 <input type="submit" value="Save">
 
-            </div>
-        </div>
-    </div>
 
 </form:form>
 </body>

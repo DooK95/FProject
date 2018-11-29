@@ -1,8 +1,11 @@
 package pl.coderslab.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -15,17 +18,33 @@ public class Group {
     @NotBlank
     private String address;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @NotNull
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<TrainingDay> trainingDay;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private GroupStatus status;
 
     @ManyToMany(mappedBy = "groups")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Coach> coaches;
 
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(name = "GROUPS_PLAYERS",
+            joinColumns = @JoinColumn(name = "Group_id"),
+            inverseJoinColumns = @JoinColumn(name = "players_id")
+    )
+
     private List<Player> players;
+
+    @Transient
+    String allInfo;
+
+    @Transient
+    String groupSize;
 
     public Long getId() {
         return id;
@@ -75,6 +94,13 @@ public class Group {
         this.players = players;
     }
 
+    public String getAllInfo() {
+        return address + ", " + trainingDay + ", " + status;
+    }
+
+    public String getGroupSize() {
+        return String.valueOf(players.size());
+    }
 
     @Override
     public String toString() {
