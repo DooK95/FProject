@@ -19,4 +19,7 @@ public interface PlayerService {
     public List<Player> findAll();
 
     List<Player> findAllActive();
+
+    public void printPdf(Player player);
+
 }

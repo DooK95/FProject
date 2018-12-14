@@ -160,4 +160,13 @@ public class Player {
     public String getFullAddress() {
         return address + " " + city;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", fullName='" + firstName + '\'' +
+                ", fullAddress='" + address + '\'' +
+                '}';
+    }
 }

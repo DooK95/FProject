@@ -1,16 +1,23 @@
 package pl.coderslab.controller;
 
+import org.apache.pdfbox.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Group;
 import pl.coderslab.model.Player;
+import pl.coderslab.model.PlayerStatus;
 import pl.coderslab.service.GroupService;
 import pl.coderslab.service.PlayerService;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,12 +45,22 @@ public class PlayerController {
 
     @Valid
     @PostMapping("/add")
-    public String add(@ModelAttribute @Valid Player player, BindingResult result) {
+    public String add(@ModelAttribute @Valid Player player, Model model, BindingResult result) {
         if (result.hasErrors()) {
             return "playersForm";
         }
+        player.setStatus(PlayerStatus.UNACTIVE);
         playerService.save(player);
-        return "redirect:show";
+        return "redirect:/players/pdf/"+player.getId();
+    }
+
+    @GetMapping("/pdf/{id}")
+    public void getImageAsByteArray(HttpServletResponse response, @PathVariable long id) throws IOException {
+        Player player = playerService.findById(id);
+        playerService.printPdf(player);
+        InputStream in = new FileInputStream("/home/adrian/Pulpit/Kurs/apache-tomcat-9.0.12/bin/Karta"+player.getFirstName()+player.getSecondName()+player.getId()+".pdf");
+        response.setContentType(MediaType.APPLICATION_PDF_VALUE);
+        IOUtils.copy(in, response.getOutputStream());
     }
 
     @GetMapping("/update/{id}")
